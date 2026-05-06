@@ -5,8 +5,8 @@ I'm tired of the Sunday evening ritual. What do I eat this week? How do I cook i
 Platecrafted fixes that. Search meals, filter by ingredient or cuisine, watch how to cook them, and save your favourites so you stop finding the same recipe from scratch every time.
 
 ## Monorepo Architecture
-- Backend (api-server) uses Express.js REST API, connecting to MongoDB
-- Frontend uses Angular, talks to the Backend api
+- Backend (server) uses Express.js REST API, connecting to MongoDB
+- Frontend uses Angular, talks to the Backend API
 - Meal data comes from [TheMealDB](https://www.themealdb.com/) public API — free, no key needed
 - Deployed on AWS when required (EC2, S3)
 
