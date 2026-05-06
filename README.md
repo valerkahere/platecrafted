@@ -1,59 +1,52 @@
-# Platecrafted
+# Platecrafted™
 
-This project was generated using [Angular CLI](https://github.com/angular/angular-cli) version 21.2.9.
+I'm tired of the Sunday evening ritual. What do I eat this week? How do I cook it? What do I even buy?
 
-## Development server
+Platecrafted fixes that. Search meals, filter by ingredient or cuisine, watch how to cook them, and save your favourites so you stop finding the same recipe from scratch every time.
 
-To start a local development server, run:
+## Monorepo Architecture
+- Backend (api-server) uses Express.js REST API, connecting to MongoDB
+- Frontend uses Angular, talks to the Backend api
+- Meal data comes from [TheMealDB](https://www.themealdb.com/) public API — free, no key needed
+- Deployed on AWS when required (EC2, S3)
 
-```bash
-ng serve
-```
+> **DON'T WORRY**! Running this locally is as simple as it gets. See below:
 
-Once the server is running, open your browser and navigate to `http://localhost:4200/`. The application will automatically reload whenever you modify any of the source files.
-
-## Code scaffolding
-
-Angular CLI includes powerful code scaffolding tools. To generate a new component, run:
-
-```bash
-ng generate component component-name
-```
-
-For a complete list of available schematics (such as `components`, `directives`, or `pipes`), run:
+## How To Run:
+### 1. Download locally (using git and bash)
 
 ```bash
-ng generate --help
+git clone https://github.com/valerkahere/platecrafted
+cd ./platecrafted
 ```
 
-## Building
+### 2. Backend Setup
 
-To build the project run:
+2.1 Follow the [Getting Started with Atlas](https://docs.atlas.mongodb.com/getting-started/) guide to create a free account, spin up a cluster, and grab your connection string:
+
+```
+ATLAS_URI=mongodb+srv://<username>:<password>@sandbox.jadwj.mongodb.net/myFirstDatabase?retryWrites=true&w=majority
+```
+
+> [!IMPORTANT]
+> Once your cluster is live, MongoDB Compass makes it easy to browse your data locally.
+
+2.2 Create a `.env` file at `platecrafted/backend/.env`
+
+2.3 Paste your connection string from step 2.1 into that file
+
+2.4 Install dependencies across the monorepo:
 
 ```bash
-ng build
+npm install
 ```
 
-This will compile your project and store the build artifacts in the `dist/` directory. By default, the production build optimizes your application for performance and speed.
-
-## Running unit tests
-
-To execute unit tests with the [Vitest](https://vitest.dev/) test runner, use the following command:
+### 3. That's it!
 
 ```bash
-ng test
+npm run dev
 ```
 
-## Running end-to-end tests
-
-For end-to-end (e2e) testing, run:
-
-```bash
-ng e2e
-```
-
-Angular CLI does not come with an end-to-end testing framework by default. You can choose one that suits your needs.
-
-## Additional Resources
-
-For more information on using the Angular CLI, including detailed command references, visit the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.
+> [!NOTE]
+> Frontend and backend start together automatically
+> using *concurrently* when `npm run dev` runs (see "scripts" in package.json at the root of the project)
