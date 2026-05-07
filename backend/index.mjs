@@ -2,7 +2,7 @@ import express from "express";
 import cors from "cors";
 import "./loadEnvironment.mjs";
 import "express-async-errors";
-import posts from "./routes/posts.mjs";
+import items from "./routes/items.mjs";
 
 const PORT = process.env.PORT || 5050;
 const app = express();
@@ -11,7 +11,7 @@ app.use(cors());
 app.use(express.json());
 
 // Load the /posts routes
-app.use("/movies", posts);
+app.use("/meals", items);
 
 // Global error handling
 app.use((err, _req, res, next) => {

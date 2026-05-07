@@ -7,7 +7,7 @@ const router = express.Router();
 // Get a list of 50 posts
 router.get("/", async (req, res) => {
   try {
-      let collection = await db.collection("movies");
+      let collection = await db.collection("meals");
       let results = await collection.find({})
       .sort({ _id: -1}) // SORT FIRST: -1 means Descending (Newest first)
       .limit(50)
@@ -16,7 +16,7 @@ router.get("/", async (req, res) => {
   } 
   catch (error) {
     console.error("Database query failed:", error);
-    res.status(500).send({ error: "Failed to fetch movies" });
+    res.status(500).send({ error: "Failed to fetch meals" });
   }
 });
 
@@ -24,7 +24,7 @@ router.get("/", async (req, res) => {
 router.get("/:id", async (req, res) => {
   let id=req.params.id
 
-  let collection = await db.collection("movies");
+  let collection = await db.collection("meals");
   let query = {_id: ObjectId(id)};
   let result = await collection.findOne(query);
   if (!result) 
@@ -35,7 +35,7 @@ router.get("/:id", async (req, res) => {
 
 // Add a new document to the collection
 router.post("/", async (req, res) => {
-  let collection = await db.collection("movies");
+  let collection = await db.collection("meals");
   let newDocument = req.body;
   newDocument.date = new Date();
   let result = await collection.insertOne(newDocument);
@@ -48,7 +48,7 @@ router.delete("/:id", async (req, res) => {
 
   const query = { _id: ObjectId(id) };
 
-  const collection = db.collection("movies");
+  const collection = db.collection("meals");
 
   let result = await collection.deleteOne(query);
 
