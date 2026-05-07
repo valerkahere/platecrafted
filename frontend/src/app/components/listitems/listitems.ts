@@ -1,6 +1,5 @@
 import { Component, inject, signal } from '@angular/core';
 import { Itemsapi } from '../../services/itemsapi/itemsapi';
-import { Movie } from '../../models/meal.interface';
 import { FormsModule } from '@angular/forms';
 
 
