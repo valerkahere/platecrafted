@@ -4,6 +4,9 @@ const connectionString = process.env.ATLAS_URI || "";
 
 const client = new MongoClient(connectionString);
 
+const dbName = process.env.DB_NAME;
+
+
 let conn;
 try {
   conn = await client.connect();
@@ -11,6 +14,6 @@ try {
   console.error(e);
 }
 
-let db = conn.db("platecrafted");
+let db = conn.db(dbName);
 
 export default db;

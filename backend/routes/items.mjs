@@ -4,10 +4,12 @@ import { ObjectId } from "mongodb";
 
 const router = express.Router();
 
+const collectionName = process.env.COLLECTION_NAME;
+
 // Get a list of 50 posts
 router.get("/", async (req, res) => {
   try {
-      let collection = await db.collection("meals");
+      let collection = await db.collection(collectionName);
       let results = await collection.find({})
       .sort({ _id: -1}) // SORT FIRST: -1 means Descending (Newest first)
       .limit(50)
@@ -24,7 +26,7 @@ router.get("/", async (req, res) => {
 router.get("/:id", async (req, res) => {
   let id=req.params.id
 
-  let collection = await db.collection("meals");
+  let collection = await db.collection(collectionName);
   let query = {_id: ObjectId(id)};
   let result = await collection.findOne(query);
   if (!result) 
@@ -35,7 +37,7 @@ router.get("/:id", async (req, res) => {
 
 // Add a new document to the collection
 router.post("/", async (req, res) => {
-  let collection = await db.collection("meals");
+  let collection = await db.collection(collectionName);
   let newDocument = req.body;
   newDocument.date = new Date();
   let result = await collection.insertOne(newDocument);
@@ -48,7 +50,7 @@ router.delete("/:id", async (req, res) => {
 
   const query = { _id: ObjectId(id) };
 
-  const collection = db.collection("meals");
+  const collection = db.collection(collectionName);
 
   let result = await collection.deleteOne(query);
 
