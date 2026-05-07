@@ -14,7 +14,7 @@ app.use(express.json());
 app.use("/meals", items);
 
 // Global error handling
-app.use((err, _req, res, next) => {
+app.use((err, _req, res) => {
   res.status(500).send("Uh oh! An unexpected error occured.")
 })
 

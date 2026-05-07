@@ -5,29 +5,38 @@ import { fileURLToPath } from "node:url";
 import js from "@eslint/js";
 import { FlatCompat } from "@eslint/eslintrc";
 
-const __filename = fileURLToPath(import.meta.url);
-const __dirname = path.dirname(__filename);
-const compat = new FlatCompat({
-    baseDirectory: __dirname,
-    recommendedConfig: js.configs.recommended,
-    allConfig: js.configs.all
-});
+export default defineConfig([
+    js.configs.recommended, // Much cleaner than using FlatCompat!
 
-export default defineConfig([{
-    extends: compat.extends("eslint:recommended"),
+    // GLOBAL SETTINGS: This tells ESLint how to parse code
+    {
 
-    languageOptions: {
-        globals: {
-            ...globals.node,
+        languageOptions: {
+            ecmaVersion: "latest", // Use "latest" instead of 2017 for modern features
+            sourceType: "module",  // This fixes the "Unexpected token import" error
+            globals: {
+                ...globals.node,
+            },
+
+            ecmaVersion: 2017,
+            sourceType: "module",
         },
 
-        ecmaVersion: 2017,
-        sourceType: "commonjs",
+        
     },
 
-    rules: {
-        "no-unused-vars": ["error", {
-            argsIgnorePattern: "^_",
-        }],
-    },
-}]);
+    //  RULES & EXTENDS
+    {
+        // Apply these to all JS files
+        files: ["**/*.js", "**/*.mjs"], 
+        // Note: 'extends' inside a config object is a legacy pattern. 
+        // With Flat Config, you spread the compat array directly.
+        ...compat.extends("eslint:recommended")[0],
+
+        rules: {
+            "no-unused-vars": ["error", {
+                argsIgnorePattern: "^_",
+            }],
+        },
+    }
+]);
