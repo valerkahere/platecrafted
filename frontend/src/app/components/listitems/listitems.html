@@ -38,9 +38,9 @@
 </div>
 
 } @else { -->
-<div class="
-border border-light-subtle rounded-4
-row bg-light mx-1 p-4">
+<div
+  class="border border-light-subtle rounded-4 row bg-light mx-1 p-4"
+>
   <!-- @if (movieService.movies().length === 0) {
   <h3>Try searching for a movie above</h3>
   }
@@ -52,61 +52,83 @@ row bg-light mx-1 p-4">
     </h3>
   } -->
   @if (movieService.movies()) {
-    <h3 class="text-bold">Total movies: {{ movieService.movies().length }}</h3>
+    <h3 class="text-bold">
+      Total movies: {{ movieService.movies().length }}
+    </h3>
   } @else {
     <h3 class="text-bold">No movies found!</h3>
   }
 
   <div>
-    
+    <form
+      class="d-flex flex-column gap-3"
+      #deleteForm="ngForm"
+      (ngSubmit)="deleteForm.valid && onSubmit()"
+    >
+      <!-- Input 1: ID -->
+      <div class="form-floating">
+        <input
+          [(ngModel)]="id"
+          type="text"
+          class="form-control"
+          id="movieID"
+          name="movieID"
+          required
+          placeholder="69c03eecd5b7920faf126ba4"
+        />
+        <label for="movieID"
+          >Movie ID <span class="text-danger">*</span></label
+        >
+      </div>
 
-    <form class="d-flex flex-column gap-3" #deleteForm="ngForm" (ngSubmit)="deleteForm.valid && onSubmit()">
-    
-    <!-- Input 1: ID -->
-    <div class="form-floating">
-        <input [(ngModel)]="id" type="text" class="form-control" id="movieID" name="movieID" required placeholder="69c03eecd5b7920faf126ba4">
-        <label for="movieID">Movie ID <span class="text-danger">*</span></label>
-    </div>
-
-    <!-- Submit Area -->
-    <div>
-        <button type="submit" class="btn btn-primary" [disabled]="deleteForm.invalid">Delete Movie</button>
-    </div>
-
-</form>
-
+      <!-- Submit Area -->
+      <div>
+        <button
+          type="submit"
+          class="btn btn-primary"
+          [disabled]="deleteForm.invalid"
+        >
+          Delete Movie
+        </button>
+      </div>
+    </form>
   </div>
-  
 
-  <div class="row row-cols-1 row-cols-md-3 g-4"> <!-- Grid setup with gutters -->
+  <div class="row row-cols-1 row-cols-md-3 g-4">
+    <!-- Grid setup with gutters -->
     @for (movieData of movieService.movies(); track movieData._id) {
-    <div class="col d-flex"> <!-- Column stretches to match the tallest in the row -->
-      <div class="card h-100 w-100"> <!-- Card fills the full height of the column -->
-        <div class="card-body d-flex flex-column">
-          <h5 class="card-title">{{ movieData.title || "N/A" }}</h5>
-          <p class="card-text">{{ movieData.year }}</p>
-          <!-- @if (!movieData.poster) { -->
+      <div class="col d-flex">
+        <!-- Column stretches to match the tallest in the row -->
+        <div class="card h-100 w-100">
+          <!-- Card fills the full height of the column -->
+          <div class="card-body d-flex flex-column">
+            <h5 class="card-title">{{ movieData.title || 'N/A' }}</h5>
+            <p class="card-text">{{ movieData.year }}</p>
+            <!-- @if (!movieData.poster) { -->
             <!-- <object data=[movieData.poster()] type="image/jpg">
               <img src="fallback-image.jpeg" />
             </object>
             <img class="col-12 object-fit-cover" src="placeholder.svg" alt="placeholder image"> -->
 
-            <img class="object-fit-cover h-100" [src]="movieData.poster" onerror="this.src = 'placeholder.svg';"/>
+            <img
+              class="object-fit-cover h-100"
+              [src]="movieData.poster"
+              onerror="this.src = 'placeholder.svg'"
+            />
 
-          <!-- } @else {
+            <!-- } @else {
             <img class="w-100 rounded-1 " [src]="movieData.poster">
           }
            -->
 
-          <!-- Push the button to the bottom using 'mt-auto' -->
-          <!-- <a (click)="movieService.getMovie(movieData._id)" [routerLink]="['/movie', movieData._id]"
+            <!-- Push the button to the bottom using 'mt-auto' -->
+            <!-- <a (click)="movieService.getMovie(movieData._id)" [routerLink]="['/movie', movieData._id]"
             class="btn btn-primary mt-auto">
             View Details
           </a> -->
+          </div>
         </div>
       </div>
-    </div>
     }
   </div>
 </div>
-

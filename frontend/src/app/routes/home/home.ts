@@ -4,12 +4,8 @@ import { Listitems } from '../../components/listitems/listitems';
 
 @Component({
   selector: 'app-home',
-  imports: [
-    Additem, Listitems
-  ],
+  imports: [Additem, Listitems],
   templateUrl: './home.html',
   styleUrl: './home.css',
 })
-export class Home {
-
-}
+export class Home {}
