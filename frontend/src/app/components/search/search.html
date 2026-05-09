@@ -2,7 +2,7 @@
   class="flex flex-col gap-3"
   #searchForm="ngForm"
   (ngSubmit)="
-    searchForm.valid && itemsService.getItem(mealName.value)
+    searchForm.valid && itemsService.getItemsUser(mealName.value)
   "
 >
   <div class="flex flex-col gap-1">
