@@ -1,3 +1,4 @@
 export const environment = {
-  apiURL: 'http://localhost:5050',
+  production: false,
+  apiURL: 'www.themealdb.com/api/json/v1/1/',
 };

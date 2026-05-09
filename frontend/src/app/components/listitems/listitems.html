@@ -1,4 +1,15 @@
-<!-- @if (movieService.movie(); as singleMovie) {
+
+
+
+
+
+
+
+
+
+
+
+<!-- @if (itemsService.movie(); as singleMovie) {
 <div class="container">
   <div class="
     
@@ -6,20 +17,20 @@
     border border-light-subtle rounded-4
     row mt-4 p-4">
     <div class="col-4">
-      @if ((movieService.movie()?.poster?.length ?? 0) > 3) {
-      <img class="img-fluid rounded-1 " [src]="movieService.movie()?.poster">
+      @if ((itemsService.movie()?.poster?.length ?? 0) > 3) {
+      <img class="img-fluid rounded-1 " [src]="itemsService.movie()?.poster">
       }
     </div>
     <div class="col-8">
-      @if ((movieService.movie()?.Title ?? "No title") !== null) {
+      @if ((itemsService.movie()?.Title ?? "No title") !== null) {
       <div>
-        <h1 class="text-info">{{(movieService.movie()?.Title ?? "No title")}}</h1>
-        <h2>Director: {{(movieService.movie()?.Director ?? "No director")}}</h2>
-        <h3>Year of release: {{(movieService.movie()?.Year ?? "No year")}}</h3>
-        @if (movieService.movie()?.Ratings?.length === 0) {
+        <h1 class="text-info">{{(itemsService.movie()?.Title ?? "No title")}}</h1>
+        <h2>Director: {{(itemsService.movie()?.Director ?? "No director")}}</h2>
+        <h3>Year of release: {{(itemsService.movie()?.Year ?? "No year")}}</h3>
+        @if (itemsService.movie()?.Ratings?.length === 0) {
         <h3>Ratings:</h3>
 
-        @for (rating of movieService.movie()?.Ratings; track rating) {
+        @for (rating of itemsService.movie()?.Ratings; track rating) {
         <h4>{{rating.source}}</h4>
         <h5>{{rating.value}}</h5>
         }
@@ -28,7 +39,7 @@
 
 
       </div>
-      <a routerLink="/" class="mt-auto btn btn-primary btn-sm" (click)="movieService.movie.set(null)">
+      <a routerLink="/" class="mt-auto btn btn-primary btn-sm" (click)="itemsService.movie.set(null)">
         Back Home
       </a>
       }
@@ -41,22 +52,22 @@
 <div
   class="border border-light-subtle rounded-4 row bg-light mx-1 p-4"
 >
-  <!-- @if (movieService.movies().length === 0) {
+  <!-- @if (itemsService.items().length === 0) {
   <h3>Try searching for a movie above</h3>
   }
-  @if (movieService.errorMessage() !== null) {
+  @if (itemsService.errorMessage() !== null) {
     <h3 class="text-danger">
-      {{ movieService.errorMessage() +
+      {{ itemsService.errorMessage() +
       " Please try searching for a different movie"
       }}
     </h3>
   } -->
-  @if (movieService.movies()) {
+  @if (itemsService.items()) {
     <h3 class="text-bold">
-      Total movies: {{ movieService.movies().length }}
+      Total items: {{ itemsService.items().length }}
     </h3>
   } @else {
-    <h3 class="text-bold">No movies found!</h3>
+    <h3 class="text-bold">No items found!</h3>
   }
 
   <div>
@@ -96,14 +107,14 @@
 
   <div class="row row-cols-1 row-cols-md-3 g-4">
     <!-- Grid setup with gutters -->
-    @for (movieData of movieService.movies(); track movieData._id) {
+    @for (movieData of itemsService.items(); track movieData._id) {
       <div class="col d-flex">
         <!-- Column stretches to match the tallest in the row -->
         <div class="card h-100 w-100">
           <!-- Card fills the full height of the column -->
           <div class="card-body d-flex flex-column">
             <h5 class="card-title">{{ movieData.title || 'N/A' }}</h5>
-            <p class="card-text">{{ movieData.year }}</p>
+            <!-- <p class="card-text">{{ movieData.year }}</p> -->
             <!-- @if (!movieData.poster) { -->
             <!-- <object data=[movieData.poster()] type="image/jpg">
               <img src="fallback-image.jpeg" />
@@ -122,7 +133,7 @@
            -->
 
             <!-- Push the button to the bottom using 'mt-auto' -->
-            <!-- <a (click)="movieService.getMovie(movieData._id)" [routerLink]="['/movie', movieData._id]"
+            <!-- <a (click)="itemsService.getMovie(movieData._id)" [routerLink]="['/movie', movieData._id]"
             class="btn btn-primary mt-auto">
             View Details
           </a> -->

@@ -1,7 +1,6 @@
 import { Component, inject, Signal, signal } from '@angular/core';
 import { FormsModule } from '@angular/forms';
-import { Itemsapi } from '../../services/itemsapi/itemsapi';
-
+import { ItemsService } from '../../services/items/items.service';
 @Component({
   selector: 'app-additem',
   imports: [FormsModule],
@@ -9,7 +8,7 @@ import { Itemsapi } from '../../services/itemsapi/itemsapi';
   styleUrl: './additem.css',
 })
 export class Additem {
-  movieService = inject(Itemsapi);
+  itemsService = inject(ItemsService);
 
   title = signal<string>('');
   year = signal<number | null>(null);
@@ -17,11 +16,11 @@ export class Additem {
 
   onSubmit() {
     // 1. Send data to service
-    this.movieService.addItem(
-      this.title(),
-      this.year(),
-      this.poster(),
-    );
+    // this.itemsService.addItem(
+    //   this.title(),
+    //   this.year(),
+    //   this.poster(),
+    // );
     // 2. Clear the form signals
     this.title.set('');
     this.year.set(null);

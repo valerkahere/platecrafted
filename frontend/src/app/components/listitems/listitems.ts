@@ -1,6 +1,6 @@
 import { Component, inject, signal } from '@angular/core';
-import { Itemsapi } from '../../services/itemsapi/itemsapi';
 import { FormsModule } from '@angular/forms';
+import { ItemsService } from '../../services/items/items.service';
 
 @Component({
   selector: 'app-listitems',
@@ -9,16 +9,16 @@ import { FormsModule } from '@angular/forms';
   styleUrl: './listitems.css',
 })
 export class Listitems {
-  movieService = inject(Itemsapi);
+  itemsService = inject(ItemsService);
 
   constructor() {
-    this.movieService.getItems();
+    this.itemsService.getItems();
   }
 
   id = signal<string>('');
   onSubmit() {
     // 1. Send data to service
-    this.movieService.deleteItem(this.id());
+    //this.itemsService.deleteItem(this.id());
     // 2. Clear the form signals
     this.id.set('');
   }
