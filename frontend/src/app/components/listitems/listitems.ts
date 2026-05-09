@@ -1,6 +1,7 @@
 import { Component, inject, signal } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { ItemsService } from '../../services/items/items.service';
+import { Meal } from '../../models/meal.interface';
 
 @Component({
   selector: 'app-listitems',
@@ -16,10 +17,16 @@ export class Listitems {
   }
 
   id = signal<string>('');
+
   onSubmit() {
-    // 1. Send data to service
-    //this.itemsService.deleteItem(this.id());
-    // 2. Clear the form signals
     this.id.set('');
+  }
+
+  //  helper to extract the first N non-empty ingredients from the Meal
+  getIngredients(meal: Meal, count = 3): string[] {
+    return Array.from({ length: 10 }, (_, i) => i + 1)
+      .map((i) => meal[`strIngredient${i}` as keyof Meal] as string)
+      .filter((ingredient) => ingredient?.trim())
+      .slice(0, count);
   }
 }

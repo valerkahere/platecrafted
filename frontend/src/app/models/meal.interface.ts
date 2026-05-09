@@ -1,5 +1,5 @@
 export interface MealResponse {
-  meals: Meal[] | null;  // null when no results found
+  meals: Meal[] | null; // null when no results found
 }
 
 export interface Meal {
@@ -36,6 +36,3 @@ export interface Meal {
   response: string;
   error: string;
 }
-
-
-

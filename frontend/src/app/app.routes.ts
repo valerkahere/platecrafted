@@ -6,11 +6,11 @@ export const routes: Routes = [
   {
     path: '',
     component: Home,
-    title: 'Platecrafted'
+    title: 'Platecrafted',
   },
   {
     path: 'about',
     component: About,
-    title: 'About Platecrafted'
-  }
+    title: 'About Platecrafted',
+  },
 ];
