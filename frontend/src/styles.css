@@ -1,3 +1,18 @@
 /* You can add global styles to this file, and also import other style files */
 
 @import 'tailwindcss';
+@layer theme, base, components, utilities;
+
+/* 
+default sans font stack
+
+ui-sans-serif, system-ui, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji" */
+@theme {
+    /* the base layer will now use Inter */
+    --default-font-family: "Inter Variable", ui-sans-serif, system-ui;
+}
+
+
+
+
+
