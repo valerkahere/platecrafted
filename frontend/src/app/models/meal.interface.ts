@@ -1,13 +1,18 @@
+export interface MealResponse {
+  meals: Meal[] | null;  // null when no results found
+}
+
 export interface Meal {
-  _id: string;
-  title: string;
-  category: string;
-  area: string;
-  country: string;
-  instructions: string;
-  poster: string;
-  tags: string;
-  video: string;
+  idMeal: string;
+  strMeal: string;
+  strCategory: string;
+  strArea: string;
+  strCountry: string;
+  strInstructions: string;
+  strMealThumb: string;
+  strTags: string | null;
+  strYoutube: string;
+  strSource: string; // recipe source website, where it's ocming from
   strIngredient1: string;
   strIngredient2: string;
   strIngredient3: string;
