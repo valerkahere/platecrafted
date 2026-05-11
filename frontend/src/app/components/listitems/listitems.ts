@@ -16,6 +16,7 @@ export class Listitems {
   itemsService = inject(ItemsService);
 
   constructor() {
+    this.itemsService.item.set(null); // clear detail view on home load
     this.itemsService.getItemsUser();
   }
 

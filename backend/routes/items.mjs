@@ -9,6 +9,7 @@ const collectionName = process.env.COLLECTION_NAME;
 // Get a list of 50 posts
 router.get("/", async (req, res) => {
   try {
+    console.log("called: GET");
       let collection = await db.collection(collectionName);
       let results = await collection.find({})
       .sort({ _id: -1}) // SORT FIRST: -1 means Descending (Newest first)
@@ -23,7 +24,7 @@ router.get("/", async (req, res) => {
 });
 
 // Get a single post
-router.get("/:id", async (req, res) => {
+router.get("/:id/", async (req, res) => {
   let id=req.params.id
 
   let collection = await db.collection(collectionName);
@@ -37,24 +38,37 @@ router.get("/:id", async (req, res) => {
 
 // Add a new document to the collection
 router.post("/", async (req, res) => {
-  let collection = await db.collection(collectionName);
+  try {
+    console.log("called: POST");
+    let collection = await db.collection(collectionName);
   let newDocument = req.body;
   newDocument.date = new Date();
   let result = await collection.insertOne(newDocument);
   res.send(result).status(204);
+    } 
+  catch (error) {
+    console.error("Database query failed:", error);
+    res.status(500).send({ error: "Failed to fetch meals" });
+  }
+
+  
 });
 
 // Delete an entry
-router.delete("/:id", async (req, res) => {
+router.delete("/:id/", async (req, res) => {
+  console.log("called: DELETE")
   let id = req.params.id
 
-  const query = { _id: ObjectId(id) };
+  const query = { idMeal: id };
 
   const collection = db.collection(collectionName);
 
   let result = await collection.deleteOne(query);
 
-  res.send(result).status(200);
+  // Always set status BEFORE sending
+  res.status(200).send(result);
+
+
 
 });
 

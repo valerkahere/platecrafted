@@ -10,10 +10,14 @@ import { Meal, MealResponse } from '../../models/meal.interface';
 export class ItemsService {
   private _http = inject(HttpClient);
   private _apiURL = environment.apiURL;
+  private _serverURL = environment.serverURL;
 
   public item = signal<Meal | null>(null);
 
   public items = signal<Meal[] | null>([]);
+
+  public savedItems = signal<Meal[] | null>([]);
+
 
   public response = signal<MealResponse | null>(null);
 
@@ -51,6 +55,9 @@ export class ItemsService {
   }
 
   getItemsByLetter(letter?: string) {
+    // prevents items from stacking up through the same requests
+    this.items.set(null);
+
     this.searchTerm.set(letter);
 
     const defaultLetter = 'a';
@@ -91,23 +98,34 @@ export class ItemsService {
       });
   }
 
-  // add one movie
+  // add meal to favourites
 
-  //   addItem(myTitle: string, myYear: number | null, myPoster:string) {
-  //     const url = `${this._apiURL}/movies`;
-  //     let movie = {title:myTitle, year:myYear, poster:myPoster}
-  //     this._http.post<Movie[]>(url, movie)
-  //     .subscribe(data => {
-  //         this.getItems();
-  //     });
-  // }
+    addFav(meal: Meal) {
+      const fullURL = `${this._serverURL}/meals/`;
+      console.log(fullURL);
+      console.log(`SEND MEAL: `)
+      console.log(meal);
+      this._http.post<Meal>(fullURL, meal).subscribe(data => {
+      });
+  }
 
-  // // delete car by id
-  //  deleteItem(myId:string) {
-  //   const url = `${this._apiURL}/movies/${myId}`;
-  //   this._http.delete(url)
-  //   .subscribe(data => {
-  //     this.getItems();
-  //   });
-  // }
+  // get added meals
+
+  getSavedMeals() {
+    const fullURL = `${this._serverURL}/meals`;
+    this._http.get<Meal[]>(fullURL)
+      .subscribe(data => {
+          this.savedItems.set(data);
+      });
+  }
+
+  removeFav(idMeal: string) {
+  const fullURL = `${this._serverURL}/meals/${idMeal}`;
+  // You MUST subscribe
+  this._http.delete(fullURL).subscribe(() => {
+    console.log('Deleted successfully');
+    this.getSavedMeals(); // re-fetch after delete
+  });
+}
+
 }

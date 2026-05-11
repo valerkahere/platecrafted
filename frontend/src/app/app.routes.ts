@@ -3,6 +3,8 @@ import { Home } from './routes/home/home';
 import { About } from './routes/about/about';
 import { Alphabet } from './routes/alphabet/alphabet';
 import { Listitems } from './components/listitems/listitems';
+import { Favourite } from './routes/favourite/favourite';
+ 
 
 export const routes: Routes = [
   {
@@ -25,4 +27,9 @@ export const routes: Routes = [
     component: Listitems,
     title: 'Meal',
   },
+  {
+    path: 'favourites',
+    component: Favourite,
+    title: 'My Favourites'
+  }
 ];

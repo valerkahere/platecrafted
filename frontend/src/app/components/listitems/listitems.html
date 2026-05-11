@@ -1,5 +1,5 @@
 @if (itemsService.item(); as meal) {
-  <div class="container mx-auto flex flex-col gap-1">
+  <div class="container mx-auto flex flex-col gap-1 sm:my-3 md:my-5 ">
     <div
       class="mx-1 rounded-2xl border border-amber-200 bg-amber-50 p-4"
     >
@@ -102,7 +102,7 @@
       </p>
     } @else {
       <h3 class="mb-4 font-bold text-stone-700">
-        No meals found! Please try searching for a different meal
+        No meals found! Please try searching for a different meal. "Borscht" is a good one.
         above
       </h3>
     }
@@ -124,6 +124,7 @@
               />
               <!-- star -->
               <button
+                (click)="itemsService.addFav(meal)"
                 class="absolute top-2 right-2 flex cursor-pointer items-center justify-center rounded-full bg-mauve-800 p-2 leading-none text-amber-400 transition hover:text-amber-500 md:p-1.5"
               >
                 <bi:star class="h-8 w-8 md:h-6 md:w-6"></bi:star>
