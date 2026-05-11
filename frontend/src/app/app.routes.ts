@@ -18,10 +18,11 @@ export const routes: Routes = [
   {
     path: 'alphabet',
     component: Alphabet,
-    title: 'Meal By Letter'
+    title: 'Meal By Letter',
   },
-  { 
-    path: 'meal/:id', component: Listitems,
-    title: 'Meal'
-  }
+  {
+    path: 'meal/:id',
+    component: Listitems,
+    title: 'Meal',
+  },
 ];

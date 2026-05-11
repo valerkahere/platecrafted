@@ -1,25 +1,18 @@
-
 <div class="container mx-auto flex flex-col gap-1">
-
-<div class="flex flex-wrap gap-2 justify-center px-2 py-4">
-  @for (letter of letters; track letter) {
-    <button
-      (click)="selectLetter(letter)"
-      class="w-9 h-9 rounded-lg text-sm font-semibold uppercase transition
-             border border-amber-300 text-stone-700
-             hover:bg-amber-200 hover:border-amber-400
-             cursor-pointer
-             disabled:opacity-40 disabled:cursor-not-allowed"
+  <div class="flex flex-wrap justify-center gap-2 px-2 py-4">
+    @for (letter of letters; track letter) {
+      <button
+        (click)="selectLetter(letter)"
+        class="h-9 w-9 cursor-pointer rounded-lg border border-amber-300 text-sm font-semibold text-stone-700 uppercase transition hover:border-amber-400 hover:bg-amber-200 disabled:cursor-not-allowed disabled:opacity-40"
         [ngClass]="{
-            'bg-amber-300 text-amber-50 border-mauve-600' : selectedLetter === letter
+          'border-mauve-600 bg-amber-300 text-amber-50':
+            selectedLetter === letter,
         }"
+      >
+        {{ letter }}
+      </button>
+    }
+  </div>
 
-    >
-      {{ letter }}
-    </button>
-  }
-</div>
-
-<app-listitems></app-listitems>
-
+  <app-listitems></app-listitems>
 </div>

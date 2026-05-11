@@ -13,19 +13,17 @@
       ngModel
       #mealName
       type="text"
-      class="w-full rounded-lg border border-amber-300 bg-white px-3 py-2 text-stone-700 placeholder-stone-400 focus:border-mauve-500 focus:outline-none focus:ring-2 focus:ring-mauve-200 transition"
+      class="w-full rounded-lg border border-amber-300 bg-white px-3 py-2 text-stone-700 placeholder-stone-400 transition focus:border-mauve-500 focus:ring-2 focus:ring-mauve-200 focus:outline-none"
       id="mealName"
       name="mealName"
       required
       placeholder="Chicken Handi..."
     />
   </div>
-  <div class="flex justify-between items-center gap-3">
+  <div class="flex items-center justify-between gap-3">
     <button
       type="submit"
-      class="
-      cursor-pointer
-      bg-mauve-600 text-amber-50 px-4 py-2 rounded-lg hover:bg-mauve-700 transition disabled:opacity-50 disabled:cursor-not-allowed"
+      class="cursor-pointer rounded-lg bg-mauve-600 px-4 py-2 text-amber-50 transition hover:bg-mauve-700 disabled:cursor-not-allowed disabled:opacity-50"
       [disabled]="searchForm.invalid"
     >
       Find Meals

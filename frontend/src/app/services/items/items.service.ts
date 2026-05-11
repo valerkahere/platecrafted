@@ -10,9 +10,8 @@ import { Meal, MealResponse } from '../../models/meal.interface';
 export class ItemsService {
   private _http = inject(HttpClient);
   private _apiURL = environment.apiURL;
-    
-  public item = signal<Meal | null>(null);
 
+  public item = signal<Meal | null>(null);
 
   public items = signal<Meal[] | null>([]);
 
@@ -32,10 +31,10 @@ export class ItemsService {
   getItemsUser(name?: string) {
     this.searchTerm.set(name);
 
-    const defaultSearchTerm = "Chicken";
+    const defaultSearchTerm = 'Chicken';
     let fullURL = `${this._apiURL}/search.php?s=${defaultSearchTerm}`;
     if (name) {
-      fullURL = `${this._apiURL}/search.php?s=${name}`
+      fullURL = `${this._apiURL}/search.php?s=${name}`;
     }
     this._http
       .get<MealResponse>(fullURL)
@@ -51,14 +50,14 @@ export class ItemsService {
       });
   }
 
-   getItemsByLetter(letter?: string) {
+  getItemsByLetter(letter?: string) {
     this.searchTerm.set(letter);
 
-    const defaultLetter = "a";
+    const defaultLetter = 'a';
     let fullURL = `${this._apiURL}/search.php?f=${defaultLetter}`;
 
     if (letter) {
-      fullURL = `${this._apiURL}/search.php?f=${letter}`
+      fullURL = `${this._apiURL}/search.php?f=${letter}`;
     }
     this._http
       .get<MealResponse>(fullURL)
@@ -74,9 +73,8 @@ export class ItemsService {
       });
   }
 
-      // the return value is observable of type MovieDetails
-    getMealById(id: string) {
-
+  // the return value is observable of type MovieDetails
+  getMealById(id: string) {
     const fullURL = `${this._apiURL}/lookup.php?i=${id}`;
 
     this._http
@@ -91,9 +89,7 @@ export class ItemsService {
         this.response.set(data ?? null);
         this.item.set(data.meals?.[0] ?? null); // null when no results found
       });
-    }
-
-
+  }
 
   // add one movie
 
