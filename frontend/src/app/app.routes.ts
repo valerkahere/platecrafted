@@ -2,6 +2,7 @@ import { Routes } from '@angular/router';
 import { Home } from './routes/home/home';
 import { About } from './routes/about/about';
 import { Alphabet } from './routes/alphabet/alphabet';
+import { Listitems } from './components/listitems/listitems';
 
 export const routes: Routes = [
   {
@@ -18,5 +19,9 @@ export const routes: Routes = [
     path: 'alphabet',
     component: Alphabet,
     title: 'Meal By Letter'
+  },
+  { 
+    path: 'meal/:id', component: Listitems,
+    title: 'Meal'
   }
 ];
