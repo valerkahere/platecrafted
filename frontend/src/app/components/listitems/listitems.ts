@@ -4,9 +4,11 @@ import { ItemsService } from '../../services/items/items.service';
 import { Meal } from '../../models/meal.interface';
 import { RouterLinkWithHref } from '@angular/router';
 
+import { IconBiStar } from '../icons/star.component';
+
 @Component({
   selector: 'app-listitems',
-  imports: [FormsModule, RouterLinkWithHref],
+  imports: [FormsModule, RouterLinkWithHref, IconBiStar],
   templateUrl: './listitems.html',
   styles: [],
 })

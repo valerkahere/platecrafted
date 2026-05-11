@@ -1,7 +1,8 @@
 @if (itemsService.item(); as meal) {
-  <div class="border border-amber-200 rounded-2xl bg-amber-50 mx-1 p-4">
+  <div
+    class="border border-amber-200 rounded-2xl bg-amber-50 mx-1 p-4"
+  >
     <div class="flex flex-col md:flex-row gap-6">
-
       <!-- Image -->
       <div class="md:w-1/3">
         <img
@@ -14,22 +15,35 @@
 
       <!-- Details -->
       <div class="md:w-2/3 flex flex-col gap-4">
-        <h1 class="text-2xl font-bold text-stone-800">{{ meal.strMeal }}</h1>
+        <h1 class="text-2xl font-bold text-stone-800">
+          {{ meal.strMeal }}
+        </h1>
 
         <div class="flex gap-3 flex-wrap">
-          <span class="text-xs font-medium bg-amber-100 text-amber-800 border border-amber-300 rounded-full px-3 py-1">
+          <span
+            class="text-xs font-medium bg-amber-100 text-amber-800 border border-amber-300 rounded-full px-3 py-1"
+          >
             {{ meal.strCategory }}
           </span>
-          <span class="text-xs font-medium bg-amber-100 text-amber-800 border border-amber-300 rounded-full px-3 py-1">
+          <span
+            class="text-xs font-medium bg-amber-100 text-amber-800 border border-amber-300 rounded-full px-3 py-1"
+          >
             {{ meal.strArea }}
           </span>
         </div>
 
         <!-- Ingredients -->
         <div>
-          <p class="text-sm font-semibold text-stone-600 mb-2">Ingredients:</p>
-          <ul class="list-disc list-inside text-sm text-stone-700 space-y-1 columns-2">
-            @for (ingredient of getIngredients(meal, 10); track ingredient) {
+          <p class="text-sm font-semibold text-stone-600 mb-2">
+            Ingredients:
+          </p>
+          <ul
+            class="list-disc list-inside text-sm text-stone-700 space-y-1 columns-2"
+          >
+            @for (
+              ingredient of getIngredients(meal, 10);
+              track ingredient
+            ) {
               <li>{{ ingredient }}</li>
             }
           </ul>
@@ -37,8 +51,12 @@
 
         <!-- Instructions -->
         <div>
-          <p class="text-sm font-semibold text-stone-600 mb-2">Cooking instructions:</p>
-          <p class="text-sm text-stone-600 leading-relaxed">{{ meal.strInstructions }}</p>
+          <p class="text-sm font-semibold text-stone-600 mb-2">
+            Cooking instructions:
+          </p>
+          <p class="text-sm text-stone-600 leading-relaxed">
+            {{ meal.strInstructions }}
+          </p>
         </div>
 
         <!-- YouTube -->
@@ -63,13 +81,12 @@
           </button>
         </div>
       </div>
-
     </div>
   </div>
-
 } @else {
-
-  <div class="border border-amber-200 rounded-2xl bg-amber-50 mx-1 p-4">
+  <div
+    class="border border-amber-200 rounded-2xl bg-amber-50 mx-1 p-4"
+  >
     @if (itemsService.items()) {
       @if (itemsService.searchTerm()) {
         <h3 class="font-bold text-stone-700 mb-4">
@@ -81,15 +98,19 @@
       </p>
     } @else {
       <h3 class="font-bold text-stone-700 mb-4">
-        No meals found! Please try searching for a different meal above
+        No meals found! Please try searching for a different meal
+        above
       </h3>
     }
 
-    <div class="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-4 mt-4">
+    <div
+      class="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-4 mt-4"
+    >
       @for (meal of itemsService.items(); track meal.idMeal) {
         <div class="flex">
-          <div class="flex flex-col h-full w-full rounded-xl border border-amber-200 bg-white overflow-hidden shadow-sm">
-
+          <div
+            class="flex flex-col h-full w-full rounded-xl border border-amber-200 bg-white overflow-hidden shadow-sm"
+          >
             <div class="relative">
               <img
                 class="object-cover w-full h-48"
@@ -97,63 +118,62 @@
                 onerror="this.src = 'placeholder.svg'"
                 [alt]="meal.strMeal"
               />
+              <!-- star -->
               <button
-                class="absolute top-2 right-2 bg-mauve-800 rounded-2xl cursor-pointer text-amber-400 hover:text-amber-500 transition text-2xl leading-none"
+                class="absolute top-2 right-2 bg-mauve-800 rounded-full cursor-pointer text-amber-400 hover:text-amber-500 transition text-2xl leading-none"
               >
-                ☆
+                <bi:star></bi:star>
               </button>
             </div>
 
-          <!-- Card body -->
+            <!-- Card body -->
             <div class="flex flex-col flex-1 p-4 gap-3">
-            <!-- Name -->
+              <!-- Name -->
               <h5 class="text-base font-semibold text-stone-800">
                 {{ meal.strMeal || 'N/A' }}
               </h5>
 
-            <!-- Ingredients -->
+              <!-- Ingredients -->
               <div>
-              <p class="text-sm font-medium text-stone-600 mb-1">
-                Ingredients:
-              </p>
-              <ul
-                class="list-disc list-inside text-sm text-stone-700 space-y-0.5"
-              >
-                @for (
-                  ingredient of getIngredients(meal, 3);
-                  track ingredient
-                ) {
+                <p class="text-sm font-medium text-stone-600 mb-1">
+                  Ingredients:
+                </p>
+                <ul
+                  class="list-disc list-inside text-sm text-stone-700 space-y-0.5"
+                >
+                  @for (
+                    ingredient of getIngredients(meal, 3);
+                    track ingredient
+                  ) {
                     <li>{{ ingredient }}</li>
                   }
                 </ul>
               </div>
 
-            <!-- Instructions — clamped to 3 lines -->
+              <!-- Instructions — clamped to 3 lines -->
               <div>
-              <p class="text-sm font-medium text-stone-600 mb-1">
-                Cooking instructions:
-              </p>
-              <p class="text-sm text-stone-600 line-clamp-3">
-                {{ meal.strInstructions }}
-              </p>
+                <p class="text-sm font-medium text-stone-600 mb-1">
+                  Cooking instructions:
+                </p>
+                <p class="text-sm text-stone-600 line-clamp-3">
+                  {{ meal.strInstructions }}
+                </p>
               </div>
 
-            <!-- See More -->
+              <!-- See More -->
               <div class="mt-auto pt-2">
                 <button
-                (click)="itemsService.getMealById(meal.idMeal)" [routerLink]="['/meal', meal.idMeal]"
-                  class="w-full cursor-pointer border border-stone-300 rounded-lg py-2 text-sm font-medium text-stone-700
-                  hover:text-amber-400 hover:bg-mauve-600 transition"
+                  (click)="itemsService.getMealById(meal.idMeal)"
+                  [routerLink]="['/meal', meal.idMeal]"
+                  class="w-full cursor-pointer border border-stone-300 rounded-lg py-2 text-sm font-medium text-stone-700 hover:text-amber-400 hover:bg-mauve-600 transition"
                 >
                   See More
                 </button>
               </div>
             </div>
-
           </div>
         </div>
       }
     </div>
   </div>
-
 }
