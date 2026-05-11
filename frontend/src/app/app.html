@@ -1,45 +1,54 @@
-<header class="bg-mauve-600 text-amber-50">
-  <nav class="">
-    <ul class="text-md flex items-center justify-center gap-6">
-      <li>
-        <a
-          routerLinkActive="text-amber-300"
-          ariaCurrentWhenActive="page"
-          routerLink="/"
-          [routerLinkActiveOptions]="{ exact: true }"
-          class="text-amber-50 transition hover:text-amber-400"
-          href="#"
-        >
-          Home
-        </a>
-      </li>
+<header class="bg-mauve-600 text-amber-50 shadow-md">
+  <div class="max-w-6xl mx-auto px-6 py-3 flex items-center justify-between">
 
-      <li>
-        <a
-          routerLinkActive="text-amber-300"
-          ariaCurrentWhenActive="page"
-          routerLink="/about"
-          [routerLinkActiveOptions]="{ exact: true }"
-          class="text-amber-50 transition hover:text-amber-400"
-          href="#"
-        >
-          About
-        </a>
-      </li>
-      <li>
-        <a
-          routerLinkActive="text-amber-300"
-          ariaCurrentWhenActive="page"
-          routerLink="/alphabet"
-          [routerLinkActiveOptions]="{ exact: true }"
-          class="text-amber-50 transition hover:text-amber-400"
-          href="#"
-        >
-          NEW: alphabet
-        </a>
-      </li>
-    </ul>
-  </nav>
+    <!-- Brand -->
+    <a
+      routerLink="/"
+      class="text-lg font-bold tracking-wide text-amber-50 hover:text-amber-300 transition"
+    >
+      Platecrafted
+    </a>
+
+    <!-- Nav links -->
+    <nav>
+      <ul class="flex items-center gap-1 text-sm font-medium">
+        <li>
+          <a
+            routerLink="/"
+            routerLinkActive="bg-mauve-800 text-amber-300"
+            ariaCurrentWhenActive="page"
+            [routerLinkActiveOptions]="{ exact: true }"
+            class="px-4 py-2 rounded-lg text-amber-50 hover:bg-mauve-800 hover:text-amber-300 transition"
+          >
+            Home
+          </a>
+        </li>
+        <li>
+          <a
+            routerLink="/alphabet"
+            routerLinkActive="bg-mauve-800 text-amber-300"
+            ariaCurrentWhenActive="page"
+            [routerLinkActiveOptions]="{ exact: true }"
+            class="px-4 py-2 rounded-lg text-amber-50 hover:bg-mauve-800 hover:text-amber-300 transition"
+          >
+            Browse A–Z
+          </a>
+        </li>
+        <li>
+          <a
+            routerLink="/about"
+            routerLinkActive="bg-mauve-800 text-amber-300"
+            ariaCurrentWhenActive="page"
+            [routerLinkActiveOptions]="{ exact: true }"
+            class="px-4 py-2 rounded-lg text-amber-50 hover:bg-mauve-800 hover:text-amber-300 transition"
+          >
+            About
+          </a>
+        </li>
+      </ul>
+    </nav>
+
+  </div>
 </header>
 <main>
   <router-outlet />

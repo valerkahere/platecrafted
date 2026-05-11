@@ -1,5 +1,5 @@
 <form
-  class="flex flex-col gap-3"
+  class="my-2 flex flex-col gap-3"
   #searchForm="ngForm"
   (ngSubmit)="
     searchForm.valid && itemsService.getItemsUser(mealName.value)
