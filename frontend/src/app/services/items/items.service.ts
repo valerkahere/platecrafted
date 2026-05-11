@@ -18,7 +18,6 @@ export class ItemsService {
 
   public savedItems = signal<Meal[] | null>([]);
 
-
   public response = signal<MealResponse | null>(null);
 
   public searchTerm = signal<string | undefined>(undefined);
@@ -100,32 +99,29 @@ export class ItemsService {
 
   // add meal to favourites
 
-    addFav(meal: Meal) {
-      const fullURL = `${this._serverURL}/meals/`;
-      console.log(fullURL);
-      console.log(`SEND MEAL: `)
-      console.log(meal);
-      this._http.post<Meal>(fullURL, meal).subscribe(data => {
-      });
+  addFav(meal: Meal) {
+    const fullURL = `${this._serverURL}/meals/`;
+    console.log(fullURL);
+    console.log(`SEND MEAL: `);
+    console.log(meal);
+    this._http.post<Meal>(fullURL, meal).subscribe((data) => {});
   }
 
   // get added meals
 
   getSavedMeals() {
     const fullURL = `${this._serverURL}/meals`;
-    this._http.get<Meal[]>(fullURL)
-      .subscribe(data => {
-          this.savedItems.set(data);
-      });
+    this._http.get<Meal[]>(fullURL).subscribe((data) => {
+      this.savedItems.set(data);
+    });
   }
 
   removeFav(idMeal: string) {
-  const fullURL = `${this._serverURL}/meals/${idMeal}`;
-  // You MUST subscribe
-  this._http.delete(fullURL).subscribe(() => {
-    console.log('Deleted successfully');
-    this.getSavedMeals(); // re-fetch after delete
-  });
-}
-
+    const fullURL = `${this._serverURL}/meals/${idMeal}`;
+    // You MUST subscribe
+    this._http.delete(fullURL).subscribe(() => {
+      console.log('Deleted successfully');
+      this.getSavedMeals(); // re-fetch after delete
+    });
+  }
 }

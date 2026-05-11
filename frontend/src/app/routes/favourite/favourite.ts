@@ -11,7 +11,7 @@ import { Meal } from '../../models/meal.interface';
   styles: ``,
 })
 export class Favourite {
-   itemsService = inject(ItemsService);
+  itemsService = inject(ItemsService);
 
   constructor() {
     this.itemsService.getSavedMeals();
@@ -19,9 +19,8 @@ export class Favourite {
 
   getIngredients(meal: Meal, count = 3): string[] {
     return Array.from({ length: 10 }, (_, i) => i + 1)
-      .map(i => meal[`strIngredient${i}` as keyof Meal] as string)
-      .filter(ingredient => ingredient?.trim())
+      .map((i) => meal[`strIngredient${i}` as keyof Meal] as string)
+      .filter((ingredient) => ingredient?.trim())
       .slice(0, count);
   }
 }
-

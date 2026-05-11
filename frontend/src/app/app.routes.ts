@@ -4,7 +4,6 @@ import { About } from './routes/about/about';
 import { Alphabet } from './routes/alphabet/alphabet';
 import { Listitems } from './components/listitems/listitems';
 import { Favourite } from './routes/favourite/favourite';
- 
 
 export const routes: Routes = [
   {
@@ -30,6 +29,6 @@ export const routes: Routes = [
   {
     path: 'favourites',
     component: Favourite,
-    title: 'My Favourites'
-  }
+    title: 'My Favourites',
+  },
 ];
