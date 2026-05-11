@@ -2,17 +2,11 @@ import { Component, inject, signal } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { ItemsService } from '../../services/items/items.service';
 import { Meal } from '../../models/meal.interface';
-import {
-  RouterOutlet,
-  RouterLinkWithHref,
-  RouterLinkActive,
-} from '@angular/router';
+import { RouterLinkWithHref } from '@angular/router';
 
 @Component({
   selector: 'app-listitems',
-  imports: [FormsModule,
-    RouterOutlet, RouterLinkWithHref, RouterLinkActive
-  ],
+  imports: [FormsModule, RouterLinkWithHref],
   templateUrl: './listitems.html',
   styleUrl: './listitems.css',
 })
