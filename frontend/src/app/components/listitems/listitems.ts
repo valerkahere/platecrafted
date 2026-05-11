@@ -13,7 +13,7 @@ export class Listitems {
   itemsService = inject(ItemsService);
 
   constructor() {
-    this.itemsService.getItems();
+    this.itemsService.getItemsUser();
   }
 
   id = signal<string>('');

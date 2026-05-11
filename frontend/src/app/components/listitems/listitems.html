@@ -40,47 +40,19 @@
 } @else { -->
 <div class="border border-amber-200 rounded-2xl bg-amber-50 mx-1 p-4">
   @if (itemsService.items()) {
-    <h3 class="font-bold text-stone-700 mb-4">
+    @if (itemsService.searchTerm()) {
+      <h3 class="font-bold text-stone-700 mb-4">
+        Searched for "{{itemsService.searchTerm()}}"
+      </h3>
+    }
+    
+    <p class="font-medium text-stone-700">
       Total meals: {{ itemsService.response()?.meals?.length }}
-    </h3>
+    </p>
   } @else {
-    <h3 class="font-bold text-stone-700 mb-4">No items found!</h3>
+    <h3 class="font-bold text-stone-700 mb-4">No meals found! Please try searching for a different meal above</h3>
   }
 
-  <div>
-    <form
-      class="flex flex-col gap-3"
-      #deleteForm="ngForm"
-      (ngSubmit)="deleteForm.valid && onSubmit()"
-    >
-      <div class="flex flex-col gap-1">
-        <label
-          for="mealID"
-          class="text-sm font-medium text-stone-600"
-        >
-          Meal ID <span class="text-red-500">*</span>
-        </label>
-        <input
-          [(ngModel)]="id"
-          type="text"
-          class="w-full rounded-lg border border-amber-300 bg-white px-3 py-2 text-stone-700 placeholder-stone-400 focus:border-mauve-500 focus:outline-none focus:ring-2 focus:ring-mauve-200 transition"
-          id="mealID"
-          name="mealID"
-          required
-          placeholder="69c03eecd5b7920faf126ba4"
-        />
-      </div>
-      <div>
-        <button
-          type="submit"
-          class="bg-mauve-600 text-amber-50 px-4 py-2 rounded-lg hover:bg-mauve-700 transition disabled:opacity-50 disabled:cursor-not-allowed"
-          [disabled]="deleteForm.invalid"
-        >
-          Delete Meal
-        </button>
-      </div>
-    </form>
-  </div>
 
   <div class="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-4 mt-4">
     @for (meal of itemsService.items(); track meal.idMeal) {

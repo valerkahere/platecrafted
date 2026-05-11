@@ -15,6 +15,8 @@ export class ItemsService {
 
   public response = signal<MealResponse | null>(null);
 
+  public searchTerm = signal<string | undefined>(undefined);
+
   public errorMessage = signal<any>(null);
   private handleError(err: HttpErrorResponse) {
     this.errorMessage.set(err);
@@ -24,8 +26,14 @@ export class ItemsService {
 
   // the return value is observable of type ItemDetails
   // by name
-  getItemsUser(name: string) {
-    const fullURL = `${this._apiURL}/search.php?s=${name}`;
+  getItemsUser(name?: string) {
+    this.searchTerm.set(name);
+
+    const defaultSearchTerm = "Chicken";
+    let fullURL = `${this._apiURL}/search.php?s=${defaultSearchTerm}`;
+    if (name) {
+      fullURL = `${this._apiURL}/search.php?s=${name}`
+    }
     this._http
       .get<MealResponse>(fullURL)
       .pipe(
@@ -40,16 +48,28 @@ export class ItemsService {
       });
   }
 
-  // return all meals from api
+   getItemsByLetter(letter?: string) {
+    const defaultLetter = "a";
+    let fullURL = `${this._apiURL}/search.php?f=${defaultLetter}`;
 
-  getItems() {
-    const fullURL = `${this._apiURL}/search.php?s=Chicken`;
-    this._http.get<MealResponse>(fullURL).subscribe((data) => {
-      console.log(data);
-      this.response.set(data ?? null);
-      this.items.set(data.meals ?? null); // null when no results found
-    });
+    if (letter) {
+      fullURL = `${this._apiURL}/search.php?f=${letter}`
+    }
+    this._http
+      .get<MealResponse>(fullURL)
+      .pipe(
+        // pipe chain multiples operators together. Takes observable, returns transformte
+        // tap - Performs Side Effects: Use it for actions that don't change the data, such as logging to the console, triggering analytics, or updating an external variable.
+        tap((data) => console.log('Meal: ' + JSON.stringify(data))),
+        catchError((err) => this.handleError(err)),
+      )
+      .subscribe((data) => {
+        this.response.set(data ?? null);
+        this.items.set(data.meals ?? null); // null when no results found
+      });
   }
+
+
 
   // add one movie
 
