@@ -9,7 +9,7 @@ import {
   selector: 'app-root',
   imports: [RouterOutlet, RouterLinkWithHref, RouterLinkActive],
   templateUrl: './app.html',
-  styleUrl: './app.css',
+  styles: [],
 })
 export class App {
   protected readonly title = signal('movie-collection');

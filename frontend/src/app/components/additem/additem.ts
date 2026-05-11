@@ -5,7 +5,7 @@ import { ItemsService } from '../../services/items/items.service';
   selector: 'app-additem',
   imports: [FormsModule],
   templateUrl: './additem.html',
-  styleUrl: './additem.css',
+  styles: [],
 })
 export class Additem {
   itemsService = inject(ItemsService);

@@ -8,7 +8,7 @@ import { RouterLinkWithHref } from '@angular/router';
   selector: 'app-listitems',
   imports: [FormsModule, RouterLinkWithHref],
   templateUrl: './listitems.html',
-  styleUrl: './listitems.css',
+  styles: [],
 })
 export class Listitems {
   itemsService = inject(ItemsService);

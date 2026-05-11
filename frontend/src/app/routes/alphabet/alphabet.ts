@@ -6,8 +6,8 @@ import { NgClass } from '@angular/common';
 @Component({
   selector: 'app-alphabet',
   templateUrl: './alphabet.html',
-  styleUrl: './alphabet.css',
-  imports: [Listitems, NgClass]
+  styles: [],
+  imports: [Listitems, NgClass],
 })
 export class Alphabet {
   itemsService = inject(ItemsService);

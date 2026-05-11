@@ -8,6 +8,6 @@ import {
   selector: 'app-about',
   imports: [RouterLinkWithHref, RouterLinkActive],
   templateUrl: './about.html',
-  styleUrl: './about.css',
+  styles: [],
 })
 export class About {}

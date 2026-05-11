@@ -6,7 +6,7 @@ import { ItemsService } from '../../services/items/items.service';
   selector: 'app-search',
   imports: [FormsModule],
   templateUrl: './search.html',
-  styleUrl: './search.css',
+  styles: [],
 })
 export class Search {
   itemsService = inject(ItemsService);

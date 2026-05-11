@@ -7,6 +7,6 @@ import { Search } from '../../components/search/search';
   selector: 'app-home',
   imports: [Additem, Listitems, Search],
   templateUrl: './home.html',
-  styleUrl: './home.css',
+  styles: [],
 })
 export class Home {}
