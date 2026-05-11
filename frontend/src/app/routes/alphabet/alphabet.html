@@ -1,0 +1,20 @@
+<div class="flex flex-wrap gap-2 justify-center px-2 py-4">
+  @for (letter of letters; track letter) {
+    <button
+      (click)="selectLetter(letter)"
+      class="w-9 h-9 rounded-lg text-sm font-semibold uppercase transition
+             border border-amber-300 text-stone-700
+             hover:bg-amber-200 hover:border-amber-400
+             cursor-pointer
+             disabled:opacity-40 disabled:cursor-not-allowed"
+        [ngClass]="{
+            'bg-amber-300 text-amber-50 border-mauve-600' : selectedLetter === letter
+        }"
+
+    >
+      {{ letter }}
+    </button>
+  }
+</div>
+
+<app-listitems></app-listitems>

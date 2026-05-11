@@ -49,6 +49,8 @@ export class ItemsService {
   }
 
    getItemsByLetter(letter?: string) {
+    this.searchTerm.set(letter);
+
     const defaultLetter = "a";
     let fullURL = `${this._apiURL}/search.php?f=${defaultLetter}`;
 
