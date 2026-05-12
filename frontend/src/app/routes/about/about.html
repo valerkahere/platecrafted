@@ -1,28 +1,76 @@
-<div class="container mx-auto flex flex-col gap-1">
-  <h1>Movie Collection</h1>
-  <h2>Your ultimate companion in movie search</h2>
+<div class="container mx-auto flex flex-col gap-6 px-4 py-8 max-w-3xl">
 
-  <p>
-    Curious about the newest movies? Or the oldest ones? Search
-    through our Collection!
-  </p>
+  <!-- Hero -->
+  <div class="rounded-2xl border border-amber-200 bg-amber-50 p-6">
+    <h1 class="text-3xl font-bold text-stone-800 mb-2">Platecrafted™</h1>
+    <p class="text-stone-600 leading-relaxed">
+      My girlfriend asks me to make a grocery list every week!
+      I got tired of the Sunday evening ritual — <em class="italic">what do I eat this week? How do I cook it? What do I even buy?</em>
+    </p>
+    <p class="text-stone-600 leading-relaxed mt-3">
+      Platecrafted fixes that. Search meals, filter by ingredient or cuisine, watch how to cook them,
+      and save your favourites so you stop finding the same recipe from scratch every time.
+    </p>
+  </div>
 
-  <a
-    class="btn btn-primary"
-    routerLink="/"
-    routerLinkActive="active"
-    ariaCurrentWhenActive="page"
-    [routerLinkActiveOptions]="{ exact: true }"
-    >Explore</a
-  >
+  <!-- MEAN Stack -->
+  <div class="rounded-2xl border border-amber-200 bg-amber-50 p-6">
+    <h2 class="text-xl font-bold text-stone-800 mb-4">Built on the MEAN Stack</h2>
+    <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
 
-  <p>
-    <strong>Note:</strong> the application dataset is MongoDB's
-    <a
-      href="https://www.mongodb.com/docs/atlas/sample-data/sample-mflix/"
-      rel="noopener noreferrer"
-      target="_blank"
-      >Sample Mflix Dataset</a
-    >.
-  </p>
+      <div class="rounded-xl border border-amber-200 bg-white p-4 shadow-sm">
+        <h3 class="text-xs font-semibold uppercase tracking-widest text-amber-700 mb-1">MongoDB</h3>
+        <p class="text-sm text-stone-600 mt-1">Stores your saved meals in a cloud Atlas cluster — no SQL, just documents.</p>
+      </div>
+
+      <div class="rounded-xl border border-amber-200 bg-white p-4 shadow-sm">
+        <h3 class="text-xs font-semibold uppercase tracking-widest text-amber-700 mb-1">Express.js</h3>
+        <p class="text-sm text-stone-600 mt-1">Lightweight REST API sitting between Angular and MongoDB, handling favourites.</p>
+      </div>
+
+      <div class="rounded-xl border border-amber-200 bg-white p-4 shadow-sm">
+        <h3 class="text-xs font-semibold uppercase tracking-widest text-amber-700 mb-1">Angular</h3>
+        <p class="text-sm text-stone-600 mt-1">The frontend — signals, routing, reactive forms, and a component-driven UI.</p>
+      </div>
+
+      <div class="rounded-xl border border-amber-200 bg-white p-4 shadow-sm">
+        <h3 class="text-xs font-semibold uppercase tracking-widest text-amber-700 mb-1">Node.js</h3>
+        <p class="text-sm text-stone-600 mt-1">Runs the Express server. The whole backend is a single <code class="text-mauve-700 bg-amber-100 px-1 rounded">index.mjs</code> file.</p>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- Architecture -->
+  <div class="rounded-2xl border border-amber-200 bg-amber-50 p-6">
+    <h2 class="text-xl font-bold text-stone-800 mb-4">Monorepo Architecture</h2>
+    <ul class="flex flex-col gap-3 text-sm text-stone-600">
+      <li class="flex items-start gap-3">
+        <span class="mt-0.5 rounded-full bg-mauve-600 text-amber-50 text-xs font-bold px-2 py-0.5 shrink-0">Frontend</span>
+        Angular app — talks to both the backend API and TheMealDB directly
+      </li>
+      <li class="flex items-start gap-3">
+        <span class="mt-0.5 rounded-full bg-mauve-600 text-amber-50 text-xs font-bold px-2 py-0.5 shrink-0">Backend</span>
+        Express REST API — connects to MongoDB Atlas to persist your saved meals
+      </li>
+      <li class="flex items-start gap-3">
+        <span class="mt-0.5 rounded-full bg-amber-500 text-amber-50 text-xs font-bold px-2 py-0.5 shrink-0">External</span>
+        <a href="https://www.themealdb.com" target="_blank" class="text-mauve-600 hover:text-mauve-800 underline underline-offset-2 transition">
+          TheMealDB
+        </a>
+        — free public API, no key needed, thousands of recipes
+      </li>
+    </ul>
+  </div>
+
+  <!-- Philosophy -->
+  <div class="rounded-2xl border border-amber-200 bg-amber-50 p-6">
+    <h2 class="text-xl font-bold text-stone-800 mb-3">Philosophy</h2>
+    <p class="text-stone-600 leading-relaxed">
+      Software should genuinely make life easier — automating the tedious so your thinking is freed up
+      for more important things. Platecrafted is a small proof of that: one less decision to make each week,
+      handled quietly in the background (God bless!).
+    </p>
+  </div>
+
 </div>

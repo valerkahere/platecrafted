@@ -6,7 +6,8 @@
     "start:backend": "npm run --prefix backend start",
     "install:all": "npm ci --prefix frontend && npm ci --prefix backend",
     "predev": "npm run install:all",
-    "dev": "concurrently 'npm run start:frontend' 'npm run start:backend'"
+    "dev": "concurrently 'npm run start:frontend' 'npm run start:backend'",
+    "dev:noinstall": "concurrently 'npm run start:frontend' 'npm run start:backend'"
   },
   "author": "Valerii Navalnyi",
   "devDependencies": {
