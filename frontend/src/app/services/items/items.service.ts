@@ -40,7 +40,8 @@ export class ItemsService {
     return throwError(() => new Error(`TheMealDB: ${err.message}`));
   };
 
-  // the return value is observable of type ItemDetails
+  // THE MEAL DB API METHODS
+
   // by name
   getItemsByName(name?: string) {
     this.apiError.set(false);
@@ -96,6 +97,29 @@ export class ItemsService {
         next: (data) => {
           this.response.set(data ?? null);
           this.items.set(data.meals ?? null); // null when no results found
+        },
+        error: (data) => {
+          this.apiError.set(true);
+        },
+      });
+  }
+
+  getRandomItem() {
+    this.apiError.set(false);
+    const fullURL = `${this._apiURL}/random.php`;
+
+    this._http
+      .get<MealResponse>(fullURL)
+      .pipe(
+        // pipe chain multiples operators together. Takes observable, returns transformte
+        // tap - Performs Side Effects: Use it for actions that don't change the data, such as logging to the console, triggering analytics, or updating an external variable.
+        tap((data) => console.log('Meal: ' + JSON.stringify(data))),
+        catchError((err) => this.handleError(err)),
+      )
+      .subscribe({
+        next: (data) => {
+          this.response.set(data ?? null);
+          this.item.set(data.meals?.[0] ?? null); // null when no results found
         },
         error: (data) => {
           this.apiError.set(true);

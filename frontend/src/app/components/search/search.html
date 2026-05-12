@@ -23,10 +23,17 @@
   <div class="flex items-center justify-between gap-3">
     <button
       type="submit"
-      class="flex flex-1 cursor-pointer items-center justify-center rounded-lg bg-mauve-600 px-4 py-2 whitespace-nowrap text-amber-50 transition hover:bg-mauve-700 disabled:cursor-not-allowed disabled:opacity-50 md:shrink-0 md:grow-0"
+      class="flex flex-1 cursor-pointer items-center justify-center rounded-lg bg-mauve-600 px-4 py-2 whitespace-nowrap text-amber-50 transition hover:bg-mauve-700 hover:text-amber-300 disabled:cursor-not-allowed disabled:opacity-50 md:shrink-0 md:grow-0 active:text-amber-400"
       [disabled]="searchForm.invalid"
     >
       Find Meals
+    </button>
+    <button
+      type="button"
+      (click)="itemsService.getRandomItem()"
+      class="flex flex-1 cursor-pointer items-center justify-center rounded-lg bg-mauve-600 px-4 py-2 whitespace-nowrap text-amber-50 transition hover:bg-mauve-800 hover:text-amber-300 disabled:cursor-not-allowed disabled:opacity-50 md:shrink-0 md:grow-0 active:text-amber-400"
+    >
+      I'm Feeling Lucky!
     </button>
   </div>
 </form>

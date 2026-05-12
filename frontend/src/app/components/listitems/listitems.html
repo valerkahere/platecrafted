@@ -67,7 +67,7 @@
             <a
               [href]="meal.strYoutube"
               target="_blank"
-              class="w-full cursor-pointer rounded-lg border border-stone-300 py-2 text-center text-sm font-medium text-stone-700 transition hover:bg-mauve-600 hover:text-amber-400"
+              class="w-full cursor-pointer rounded-lg border border-stone-300 bg-mauve-600 py-2 text-center text-sm font-medium text-amber-50 transition hover:bg-mauve-800 hover:text-amber-300 active:text-amber-400"
             >
               Watch on YouTube
             </a>
@@ -78,7 +78,8 @@
             <button
               (click)="itemsService.item.set(null)"
               routerLink="/"
-              class="w-full cursor-pointer rounded-lg border border-stone-300 py-2 text-sm font-medium text-stone-700 transition hover:bg-mauve-600 hover:text-amber-400"
+              class="w-full cursor-pointer rounded-lg border border-stone-300 bg-mauve-600 py-2 text-sm font-medium text-amber-50 transition hover:bg-mauve-800 hover:text-amber-300
+              active:text-amber-400"
             >
               Back to results
             </button>
@@ -125,7 +126,7 @@
               <!-- star -->
               <button
                 (click)="itemsService.addFav(meal)"
-                class="absolute top-2 right-2 flex cursor-pointer items-center justify-center rounded-full bg-mauve-800 p-2 leading-none text-amber-400 transition hover:text-amber-500 md:p-1.5"
+                class="absolute top-2 right-2 flex cursor-pointer items-center justify-center rounded-full bg-mauve-800 p-2 leading-none text-amber-300 transition hover:text-amber-500 md:p-1.5"
               >
                 <bi:star class="h-8 w-8 md:h-6 md:w-6"></bi:star>
               </button>
@@ -134,7 +135,7 @@
             <!-- Card body -->
             <div class="flex flex-1 flex-col gap-3 p-4">
               <!-- Name -->
-              <h5 class="text-base font-semibold text-stone-800">
+              <h5 class="font-semibold text-base text-stone-800">
                 {{ meal.strMeal || 'N/A' }}
               </h5>
 
@@ -170,7 +171,7 @@
                 <button
                   (click)="itemsService.getMealById(meal.idMeal)"
                   [routerLink]="['/meal', meal.idMeal]"
-                  class="w-full cursor-pointer rounded-lg border border-stone-300 py-2 text-sm font-medium text-stone-700 transition hover:bg-mauve-600 hover:text-amber-400"
+                  class="w-full cursor-pointer rounded-lg border border-stone-300 bg-mauve-600 py-2 text-sm font-medium text-amber-50 transition hover:bg-mauve-800 hover:text-amber-300 active:text-amber-400"
                 >
                   See More
                 </button>
