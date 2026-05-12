@@ -2,7 +2,7 @@
   class="mx-2 my-2 flex flex-col gap-3"
   #searchForm="ngForm"
   (ngSubmit)="
-    searchForm.valid && itemsService.getItemsUser(mealName.value)
+    searchForm.valid && itemsService.getItemsByName(mealName.value)
   "
 >
   <div class="flex flex-col gap-1">
@@ -22,11 +22,11 @@
   </div>
   <div class="flex items-center justify-between gap-3">
     <button
-  type="submit"
-  class="cursor-pointer rounded-lg bg-mauve-600 px-4 py-2 text-amber-50 transition hover:bg-mauve-700 disabled:cursor-not-allowed disabled:opacity-50 flex flex-1 justify-center items-center whitespace-nowrap md:grow-0 md:shrink-0"
-  [disabled]="searchForm.invalid"
->
-  Find Meals
-</button>
+      type="submit"
+      class="flex flex-1 cursor-pointer items-center justify-center rounded-lg bg-mauve-600 px-4 py-2 whitespace-nowrap text-amber-50 transition hover:bg-mauve-700 disabled:cursor-not-allowed disabled:opacity-50 md:shrink-0 md:grow-0"
+      [disabled]="searchForm.invalid"
+    >
+      Find Meals
+    </button>
   </div>
 </form>

@@ -17,7 +17,7 @@ export class Listitems {
 
   constructor() {
     this.itemsService.item.set(null); // clear detail view on home load
-    this.itemsService.getItemsUser();
+    this.itemsService.getItemsByName();
   }
 
   id = signal<string>('');

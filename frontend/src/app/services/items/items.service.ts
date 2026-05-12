@@ -22,16 +22,28 @@ export class ItemsService {
 
   public searchTerm = signal<string | undefined>(undefined);
 
+  // Error handling
   public errorMessage = signal<any>(null);
-  private handleError(err: HttpErrorResponse) {
-    this.errorMessage.set(err);
+  public apiError = signal<true | false>(false);
+
+  // for the frontend to track whether connected
+  // to DB or not
+  public dbStatus = signal<'idle' | 'loading' | 'success' | 'error'>(
+    'idle',
+  );
+  constructor() {}
+
+  private handleError = (err: HttpErrorResponse) => {
+    this.errorMessage.set(err.message);
+      this.dbStatus.set('error');
     console.log(`TheMealDB ${err.message}`);
     return throwError(() => new Error(`TheMealDB: ${err.message}`));
-  }
+  };
 
   // the return value is observable of type ItemDetails
   // by name
-  getItemsUser(name?: string) {
+  getItemsByName(name?: string) {
+    this.apiError.set(false);
     this.searchTerm.set(name);
 
     const defaultSearchTerm = 'Chicken';
@@ -47,13 +59,20 @@ export class ItemsService {
         tap((data) => console.log('Meal: ' + JSON.stringify(data))),
         catchError((err) => this.handleError(err)),
       )
-      .subscribe((data) => {
-        this.response.set(data ?? null);
-        this.items.set(data.meals ?? null); // null when no results found
+      .subscribe({
+        // next - data has arrived
+        next: (data) => {
+          this.response.set(data ?? null);
+          this.items.set(data.meals ?? null); // null when no results found
+        },
+        error: (data) => {
+          this.apiError.set(true);
+        },
       });
   }
 
   getItemsByLetter(letter?: string) {
+    this.apiError.set(false);
     // prevents items from stacking up through the same requests
     this.items.set(null);
 
@@ -73,14 +92,20 @@ export class ItemsService {
         tap((data) => console.log('Meal: ' + JSON.stringify(data))),
         catchError((err) => this.handleError(err)),
       )
-      .subscribe((data) => {
-        this.response.set(data ?? null);
-        this.items.set(data.meals ?? null); // null when no results found
+      .subscribe({
+        next: (data) => {
+          this.response.set(data ?? null);
+          this.items.set(data.meals ?? null); // null when no results found
+        },
+        error: (data) => {
+          this.apiError.set(true);
+        },
       });
   }
 
   // the return value is observable of type MovieDetails
   getMealById(id: string) {
+    this.apiError.set(false);
     const fullURL = `${this._apiURL}/lookup.php?i=${id}`;
 
     this._http
@@ -91,37 +116,70 @@ export class ItemsService {
         tap((data) => console.log('Meal: ' + JSON.stringify(data))),
         catchError((err) => this.handleError(err)),
       )
-      .subscribe((data) => {
-        this.response.set(data ?? null);
-        this.item.set(data.meals?.[0] ?? null); // null when no results found
+      .subscribe({
+        next: (data) => {
+          this.response.set(data ?? null);
+          this.item.set(data.meals?.[0] ?? null); // null when no results found
+        },
+        error: (data) => {
+          this.apiError.set(true);
+        },
       });
   }
 
-  // add meal to favourites
+  // DB METHODS:
 
-  addFav(meal: Meal) {
+  // add meal to favourites DB
+
+ addFav(meal: Meal) {
+    this.apiError.set(false);
+    this.dbStatus.set('loading'); //  before the request
     const fullURL = `${this._serverURL}/meals/`;
     console.log(fullURL);
     console.log(`SEND MEAL: `);
     console.log(meal);
-    this._http.post<Meal>(fullURL, meal).subscribe((data) => {});
+    this._http
+      .post<Meal>(fullURL, meal)
+      .pipe(catchError((err) => this.handleError(err)))
+      .subscribe({
+        // confirm it saved
+        next: (data) => {
+          this.getSavedMeals(); // ← fixed comma operator, getSavedMeals sets success itself
+        },
+      });
   }
-
-  // get added meals
+  // get added meals DB
 
   getSavedMeals() {
+    this.apiError.set(false);
+    this.dbStatus.set('loading'); //  before the request
+
     const fullURL = `${this._serverURL}/meals`;
-    this._http.get<Meal[]>(fullURL).subscribe((data) => {
-      this.savedItems.set(data);
-    });
+    this._http
+      .get<Meal[]>(fullURL)
+      .pipe(catchError((err) => this.handleError(err)))
+      .subscribe({
+        next: (data) => {
+          this.savedItems.set(data);
+          this.dbStatus.set('success'); //  on arrival
+        },
+      });
   }
 
+  // remove meal DB
   removeFav(idMeal: string) {
+    this.apiError.set(false);
+    this.dbStatus.set('loading'); //  before the request
+
     const fullURL = `${this._serverURL}/meals/${idMeal}`;
     // You MUST subscribe
-    this._http.delete(fullURL).subscribe(() => {
-      console.log('Deleted successfully');
-      this.getSavedMeals(); // re-fetch after delete
-    });
+    this._http
+      .delete(fullURL)
+      .pipe(catchError((err) => this.handleError(err)))
+      .subscribe({
+        next: (data) => {
+          this.getSavedMeals(); // ← removed dbStatus.set here, getSavedMeals handles it
+        },
+      });
   }
 }
