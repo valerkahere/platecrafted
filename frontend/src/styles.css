@@ -10,4 +10,6 @@ ui-sans-serif, system-ui, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Se
 @theme {
   /* the base layer will now use Inter */
   --default-font-family: 'Inter Variable', ui-sans-serif, system-ui;
+  --color-raw-white-warm: #FFFDF7;
+  --color-base: var(--color-raw-white-warm);
 }
