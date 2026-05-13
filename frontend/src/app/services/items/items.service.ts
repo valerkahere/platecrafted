@@ -1,7 +1,7 @@
 import { Injectable, inject, signal } from '@angular/core';
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { Observable, catchError, tap, throwError, take } from 'rxjs';
-import { environment } from '../../../environments/environment';
+import { environment } from '../../../environments/environment.production';
 import { Meal, MealResponse } from '../../models/meal.interface';
 
 @Injectable({
