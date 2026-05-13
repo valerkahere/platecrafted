@@ -7,7 +7,7 @@
     "install:all": "npm ci && npm ci --prefix frontend && npm ci --prefix backend",
     "predev": "npm run install:all",
     "dev": "concurrently 'npm run start:frontend' 'npm run start:backend'",
-    "clean": "rm -rf node_modules frontend/node_modules backend/node_modules frontend/.angular",
+    "clean": "rm -rf node_modules frontend/node_modules backend/node_modules frontend/.angular frontend/dist/ .husky/",
     "fresh": "npm run clean && npm install"
   },
   "author": "Valerii Navalnyi",
