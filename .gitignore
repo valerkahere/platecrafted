@@ -2,13 +2,17 @@
 
 # Compiled output
 /dist
+dist/
 /tmp
+tmp/
 /out-tsc
+out-tsc/
 /bazel-out
+bazel-out
 
 # Node / dependencies
-node_modules/
 /node_modules
+node_modules/
 npm-debug.log
 yarn-error.log
 
