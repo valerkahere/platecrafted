@@ -1,12 +1,9 @@
 import { Component } from '@angular/core';
-import {
-  RouterLinkActive,
-  RouterLinkWithHref,
-} from '@angular/router';
+
 
 @Component({
   selector: 'app-about',
-  imports: [RouterLinkWithHref, RouterLinkActive],
+  imports: [],
   templateUrl: './about.html',
   styles: [],
 })
