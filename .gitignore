@@ -46,6 +46,8 @@ __screenshots__/
 Thumbs.db
 
 # environment variables
+secrets
+secrets/
 .env
 .env.production
 .secrets/
